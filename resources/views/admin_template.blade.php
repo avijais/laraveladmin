@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title>Admin | Pannel</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -54,41 +54,23 @@ desired effect
 -->
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="main">
-    <div class="wrapper">
-
-        <!--  Header -->
-        @include('header')
-
-        <!-- Sidebar -->
-        @include('sidebar')
-        
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    {{$page_title or "Page Title" /*or null*/}}
-                    <small>{{$page_description /*or null*/ or "Page Description"}}</small>
-                </h1>
-                <!-- You can dynamically generate breadcrumbs here -->
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                    <li class="active">Here</li>
-                </ol>
-            </section>
-
-            <!-- Main content -->
-            <section class="content">
-
-                <!-- Your Page Content Here -->
-                @yield('content')
-            </section><!-- /.content -->
-        </div><!-- /.content-wrapper -->
-
-        <!-- Footer -->
-        @include('footer')
-        @include('control-sidebar')
-    </div><!-- ./wrapper -->
+    <?php
+      if(!empty($response) && count($response)>0)
+          $res = json_decode($response, true);
+      if(!empty($res['data']['name']))
+      {
+    ?>
+        @include('main-body-contain')
+    
+    <?php
+      }
+      else
+      {
+    ?>
+        @include('errors/404')      
+    <?php
+      }
+    ?>
 
 <!-- REQUIRED JS SCRIPTS -->
 
@@ -105,4 +87,3 @@ desired effect
      fixed layout. -->
 </body>
 </html>
-

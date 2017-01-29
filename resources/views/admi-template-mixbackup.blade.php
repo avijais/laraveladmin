@@ -8,7 +8,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use App\Repositories\User\UserInterface as UserInterface;
-use Validator;
 
 class LoginController extends Controller
 {
@@ -28,43 +27,27 @@ class LoginController extends Controller
     	// search in google =  'what is the puropse of creating repositories in laravel app folder'
     	// REPOSITORY PATTERN : http://itsolutionstuff.com/post/laravel-5-repository-pattern-tutorial-from-scratchexample.html
     	// $postData = Input::get();
+        $userData = $this->user->userByEmail($request);
         $status = $view = '';
         $msg = $data = array();
-
-        $requestArray = $request->toarray();
-        $validation = Validator::make($requestArray, $this->user->loginUserRule());
-        if($validation->fails())
-        {
-            $status = 'error';
-            $view ='admin/login';
-            $messages = $validation->messages();
-            foreach($messages->all() as $message)
-            {
-                $msg[] = $message;
-            }
-        }
-        else
-        {
-            $userData = $this->user->userByEmail($request);
-            
-            if(!empty($userData) && count($userData) > 0){
-                if($userData->password === $request->password){
-                    $status = 'success';
-                    $msg = ['Welcome!'];
-                    $data = array('name' => $userData->name);
-                    $view ='admin_template';
-                }else{
-                    $status = 'error';
-                    $msg = ['You have entered wrong password'];
-                    $view ='admin/login';
-                    // $view ='admin_template';
-                }    
+        
+        if(!empty($userData) && count($userData) > 0){
+            if($userData->password === $request->password){
+                $status = 'success';
+                $msg = ['Welcome!'];
+                $data = array('name' => $userData->name);
+                $view ='admin_template';
             }else{
                 $status = 'error';
-                $msg = ['Email id you have entered is not associated with any account!!'];
+                $msg = ['You have entered wrong password'];
                 $view ='admin/login';
-                // $view ='admin_template';
-            }
+                $view ='admin_template';
+            }    
+        }else{
+            $status = 'error';
+            $msg = ['Email id you have entered is not associated with any account!!'];
+            $view ='admin/login';
+            // $view ='admin_template';
         }
         $response = array('status' => $status, 'message' => $msg, 'data' => $data);
         

@@ -19,8 +19,16 @@ Route::get('register', function () {
     return view('register');
 });
 
+Route::post('registerUser','Application\RegistrationController@registerUser');
+
+// Route::post('register','Admin\LoginController@registerUser');
+
 Route::get('admin/dashboard', function () {
     return view('admin_template');
+});
+
+Route::get('admin/logout', function () {
+    return view('admin/login');
 });
 
 Route::get('admin', function () {

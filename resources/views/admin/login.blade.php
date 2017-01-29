@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Log in</title>
+  <title>Admin | Pannel</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -28,13 +28,29 @@
 <div class="main">
 <div class="login-box ">
   <div class="login-logo">
-    <a href="{{ asset("/bower_components/admin-lte/index2.html") }}"><b>Admin</b>LTE</a>
+    <a href="{{ asset("/bower_components/admin-lte/index2.html") }}"><b>Admin</b>Pannel</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
     <form action="{{ url('/admin/login') }}" method="post">
+      <?php
+        $alert = 'alert-danger';
+        if(!empty($response) && count($response)>0)
+        {
+          $response = json_decode($response, true);
+          if(count($response) > 0 && $response['status'] == 'success')
+            $alert = 'alert-success'; ?>
+          <div class="alert <?php echo $alert; ?>">
+            <ul>
+              <?php
+                foreach($response['message'] as $message)
+                  echo '<li>'.$message.'</li>';
+              ?>
+            </ul>
+          </div><?php
+        } ?>
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="form-group has-feedback">
         <input type="email" name="email" class="form-control" placeholder="Email">
