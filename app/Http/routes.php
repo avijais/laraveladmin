@@ -11,29 +11,35 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+ return view('test.welcome');
+});
 
 Route::get('register', function () {
-    return view('register');
+    return view('register.register');
 });
 
 Route::post('registerUser','Application\RegistrationController@registerUser');
 
 // Route::post('register','Admin\LoginController@registerUser');
 
+// Route::get('admin/dashboard', function () {
+//     return view('admin_template');
+// });
+
+Route::get('admin', function () {
+    return view('admin/login');
+});
+
 Route::get('admin/dashboard', function () {
-    return view('admin_template');
+    return view('dashboard');
 });
 
 Route::get('admin/logout', function () {
     return view('admin/login');
 });
 
-Route::get('admin', function () {
-    return view('admin/login');
-});
+Route::get('getAllUsers', 'Admin\UserManagement@getAllUsers');
 
 Route::post('admin/login','Admin\LoginController@login');
 Route::post('register','Auth\AuthController@registerUser');
