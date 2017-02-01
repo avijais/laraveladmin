@@ -33,7 +33,7 @@ class RegistrationController extends Controller
 	        if($validation->fails())
 	        {
 	        	$status = 'error';
-	        	$view ='register';
+	        	$view ='register.register';
 	        	$messages = $validation->messages();
 	        	foreach($messages->all() as $message)
 	        	{

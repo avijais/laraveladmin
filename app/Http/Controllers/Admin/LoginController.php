@@ -52,7 +52,7 @@ class LoginController extends Controller
                     $status = 'success';
                     $msg = ['Welcome!'];
                     $data = array('name' => $userData->name);
-                    $view ='admin_template';
+                    $view ='dashboard';
                 }else{
                     $status = 'error';
                     $msg = ['You have entered wrong password'];
@@ -73,7 +73,7 @@ class LoginController extends Controller
 
 
     /*
-        Convert laravel object to array
+        Access data from database as Array format in laravel
 
         FETCH ARRAY TO ARRAYS IN LARAVEL
 
