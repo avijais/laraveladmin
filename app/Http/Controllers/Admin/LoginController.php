@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use App\Repositories\User\UserInterface as UserInterface;
 use Validator;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -53,6 +54,7 @@ class LoginController extends Controller
                     $msg = ['Welcome!'];
                     $data = array('name' => $userData->name);
                     $view ='dashboard';
+                    return Redirect::route('admin/dashboard');
                 }else{
                     $status = 'error';
                     $msg = ['You have entered wrong password'];
@@ -86,4 +88,29 @@ class LoginController extends Controller
         DB::setFetchMode(PDO::FETCH_CLASS);
 
     */
+
+    /**
+     * Display a list of all of the user's task.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    // public function dashboard(Request $request)
+    // {
+    //     $data=[];
+    //     return view('dashboard');
+    // }
+
+    public function dashboard() {
+        return view('dashboard');
+    }
+
+    public function logout() {
+        return Redirect::route('admin');
+    }
+
+    public function adminLogin() {
+        return view('admin/login');
+    }
+
 }

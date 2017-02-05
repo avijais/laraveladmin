@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
  return view('test.welcome');
 });
@@ -27,21 +28,27 @@ Route::post('registerUser','Application\RegistrationController@registerUser');
 //     return view('admin_template');
 // });
 
-Route::get('admin', function () {
-    return view('admin/login');
-});
+// Route::get('admin', function () {
+//     return view('admin/login');
+// });
+Route::get('admin', ['uses' => 'Admin\LoginController@adminLogin', 'as' => 'admin']);
+Route::post('admin','Admin\LoginController@login');
+Route::post('register','Auth\AuthController@registerUser');
 
-Route::get('admin/dashboard', function () {
-    return view('dashboard');
-});
+// Route::get('admin/dashboard', function () {
+//     return view('dashboard');
+// });
 
-Route::get('admin/logout', function () {
-    return view('admin/login');
-});
+Route::get('admin/dashboard', ['uses' => 'Admin\LoginController@dashboard', 'as' => 'admin/dashboard']);
+// Route::get('admin/dashboard','Admin\LoginController@dashboard');
+
+Route::get('admin/logout', ['uses' => 'Admin\LoginController@logout', 'as' => 'admin/logout']);
+// Route::get('admin/logout', function () {
+//     return view('admin/login');
+// });
 
 Route::get('getAllUsers', 'Admin\UserManagement@getAllUsers');
 
-Route::post('admin/login','Admin\LoginController@login');
-Route::post('register','Auth\AuthController@registerUser');
+
 
 Route::get('test', 'TestController@index');
