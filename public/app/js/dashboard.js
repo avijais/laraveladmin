@@ -1,6 +1,6 @@
 $('body').on('click', '#user_mgt', function(){
     $.ajax({
-        url: "http://localhost/laraveladmin/public/getAllUsers",
+        url: "http://localhost/laraveladmin/public/admin/usersList",
         type: 'GET',
         statusCode: {
             404: function () {
@@ -13,8 +13,9 @@ $('body').on('click', '#user_mgt', function(){
         beforeSend: function (xhr) {
             // showLoader();
         },
-        success: function (data) {
-            $(".content").html(data);
+        success: function (request, status, errorThrown) {
+            $(".content").html(request);
+            console.log(status)
             // hideLoader();
         },
         error: function (request, status, errorThrown) {

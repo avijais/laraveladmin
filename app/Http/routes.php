@@ -47,7 +47,7 @@ Route::get('admin/logout', ['uses' => 'Admin\LoginController@logout', 'as' => 'a
 //     return view('admin/login');
 // });
 
-Route::get('getAllUsers', 'Admin\UserManagement@getAllUsers');
+Route::get('admin/usersList', 'Admin\UserController@usersList');
 
 
 
