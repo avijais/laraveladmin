@@ -1,3 +1,14 @@
+$(document).ready(function () {
+    if(window.location.href.indexOf("dashboard") > -1) {
+       $('body').removeClass('login-page')
+       $('body').addClass('skin-blue sidebar-mini')
+    }
+});
+
+$(document).on('click', '.registerNewMember', function(){
+    $('body').removeClass('login-page')
+    $('body').addClass('register-page')
+})
 $('body').on('click', '#user_mgt', function(){
     $.ajax({
         url: "http://localhost/laraveladmin/public/admin/usersList",
@@ -30,3 +41,4 @@ $('body').on('click', '#user_mgt', function(){
         }
     });
 });
+

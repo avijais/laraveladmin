@@ -1,8 +1,3 @@
-<?php
-    $bodyclass = 'login-page';
-    if(!empty($response) && !empty(json_decode($response, true)['data']['name']))
-        $bodyclass = 'skin-blue sidebar-mini';
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -59,7 +54,7 @@
   <!-- <body class="hold-transition skin-blue sidebar-mini "> -->
   <!-- <body class="hold-transition register-page"> -->
   <!-- <body class="hold-transition login-page"> -->
-  <body class="hold-transition <?php echo $bodyclass; ?>">
+  <body class="hold-transition login-page">
     <div class="main">
       @yield('content') 
     </div>
