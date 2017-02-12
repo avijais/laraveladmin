@@ -68,5 +68,13 @@ Route::get('test', 'TestController@index');
 |--------------------------------------------------------------------------|
 | 								[3]										   |
 |--------------------------------------------------------------------------|
+	=>		For global constants in Laravel 5, I don't like calling Config for them. I define them in Route group like this:
+
+			// global contants for all requests
+			Route::group(['prefix' => ''], function() {
+			    define('USER_ROLE_ADMIN','1');
+			    define('USER_ROLE_ACCOUNT','2');
+			});
+
 
 */
