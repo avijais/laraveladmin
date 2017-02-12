@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/plugins/iCheck/square/blue.css") }}">
     
     <link rel="stylesheet" href="{{ asset("/bower_components/admin-lte/dist/css/skins/skin-blue.min.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.css") }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -85,6 +86,7 @@
         });
     </script>
 
-    <script src="{{ asset("/app/js/dashboard.js") }}"></script>
+    <script src="{{ asset("/app/js/admin/dashboard.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js") }}"></script>
   </body>
 </html>

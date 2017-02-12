@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', function () {
  return view('test.welcome');
 });
@@ -22,33 +21,52 @@ Route::get('register', function () {
 
 Route::post('registerUser','Application\RegistrationController@registerUser');
 
-// Route::post('register','Admin\LoginController@registerUser');
 
-// Route::get('admin/dashboard', function () {
-//     return view('admin_template');
-// });
+Route::group(['prefix' => 'admin'], function(){
+	Route::get('/', ['uses' => 'Admin\LoginController@adminLogin', 'as' => 'admin']);
+	Route::post('/','Admin\LoginController@login');
+	Route::get('/dashboard', ['uses' => 'Admin\LoginController@dashboard', 'as' => 'admin/dashboard']);
+	Route::get('/logout', ['uses' => 'Admin\LoginController@logout', 'as' => 'admin/logout']);
+	Route::get('/usersList', 'Admin\UserController@usersList');
+	Route::get('/fetchUsers', 'Admin\UserController@fetchUsers');
+});
 
-// Route::get('admin', function () {
-//     return view('admin/login');
-// });
-Route::get('admin', ['uses' => 'Admin\LoginController@adminLogin', 'as' => 'admin']);
-Route::post('admin','Admin\LoginController@login');
 Route::post('register','Auth\AuthController@registerUser');
-
-// Route::get('admin/dashboard', function () {
-//     return view('dashboard');
-// });
-
-Route::get('admin/dashboard', ['uses' => 'Admin\LoginController@dashboard', 'as' => 'admin/dashboard']);
-// Route::get('admin/dashboard','Admin\LoginController@dashboard');
-
-Route::get('admin/logout', ['uses' => 'Admin\LoginController@logout', 'as' => 'admin/logout']);
-// Route::get('admin/logout', function () {
-//     return view('admin/login');
-// });
-
-Route::get('admin/usersList', 'Admin\UserController@usersList');
 
 
 
 Route::get('test', 'TestController@index');
+
+
+/*
+|--------------------------------------------------------------------------|
+| NOTES RELATED TO ROUTE : 
+|--------------------------------------------------------------------------|
+*/
+
+
+/*
+
+|--------------------------------------------------------------------------|
+| 								[1]										   |
+|--------------------------------------------------------------------------|
+
+	=>	'as'	:	main purpose using 'as' only for  Redirect::route('admin');
+					if you not write 'as' => 'admin' then Redirect::route('admin'); will not work
+	 
+
+|--------------------------------------------------------------------------|
+| 								[2]										   |
+|--------------------------------------------------------------------------|
+
+	=>		We can return view from route like following :
+
+			Route::get('admin/dashboard', function () {
+			    return view('dashboard');
+			});
+
+|--------------------------------------------------------------------------|
+| 								[3]										   |
+|--------------------------------------------------------------------------|
+
+*/

@@ -9,7 +9,13 @@ $(document).on('click', '.registerNewMember', function(){
     $('body').removeClass('login-page')
     $('body').addClass('register-page')
 })
+
 $('body').on('click', '#user_mgt', function(){
+    usermanagement();
+});
+
+function usermanagement(){
+
     $.ajax({
         url: "http://localhost/laraveladmin/public/admin/usersList",
         type: 'GET',
@@ -40,5 +46,6 @@ $('body').on('click', '#user_mgt', function(){
             }
         }
     });
-});
+
+}
 
