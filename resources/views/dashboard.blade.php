@@ -15,8 +15,8 @@
 
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            
-            @include('message.response-message')
+
+            {{--@include('message.response-message')--}}
             <h1>
                 {{$page_title or "Page Title" /*or null*/}}
                 <small>{{$page_description /*or null*/ or "Page Description"}}</small>
@@ -27,6 +27,9 @@
                 <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
                 <li class="active">Here</li>
             </ol>
+
+            <!-- Response message show -->
+            @include('message.response-message')
         </section>
 
         <!-- Main content -->
