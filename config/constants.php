@@ -43,7 +43,7 @@
 return [
 	'SUCCESS' => 'Success',
 	'ERROR' => 'Error'
-]
+];
 
 /*
  *	Access : echo Config::get('constants.SUCCESS');
