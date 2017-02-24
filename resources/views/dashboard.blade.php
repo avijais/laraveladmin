@@ -12,7 +12,9 @@
           
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
+    <br>
+        <!-- Response message show -->
+            @include('message.response-message')
         <!-- Content Header (Page header) -->
         <section class="content-header">
 
@@ -28,8 +30,6 @@
                 <li class="active">Here</li>
             </ol>
 
-            <!-- Response message show -->
-            @include('message.response-message')
         </section>
 
         <!-- Main content -->
@@ -47,3 +47,10 @@
 
     </div><!-- ./wrapper -->
 @endsection
+
+<script>
+// ['headers' => ['Authorization' => 'Bearer ' . $api_token]]
+// var response = <?php //echo $response; ?>;
+var response = {!! session()->get('response') !!}
+console.log(response.data.api_token);
+</script>
