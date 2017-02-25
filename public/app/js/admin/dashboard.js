@@ -31,6 +31,7 @@ function usermanagement(){
             // showLoader();
         },
         success: function (request, status, errorThrown) {
+            $(".content").html('');
             $(".content").html(request);
             console.log(status)
             // hideLoader();
