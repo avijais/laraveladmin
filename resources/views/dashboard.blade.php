@@ -52,5 +52,5 @@
 // ['headers' => ['Authorization' => 'Bearer ' . $api_token]]
 // var response = <?php //echo $response; ?>;
 var response = {!! session()->get('response') !!}
-console.log(response.data.api_token);
+// console.log(response.data.api_token);
 </script>
