@@ -85,7 +85,7 @@
           });
         });
     </script>
-
+    <script src="{{ asset("/app/js/config.js") }}"></script>
     <script src="{{ asset("/app/js/admin/dashboard.js") }}"></script>
     <script type="text/javascript" src="{{ asset("/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js") }}"></script>
   </body>
