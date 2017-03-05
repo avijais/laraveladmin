@@ -25,6 +25,12 @@ $(document).on('submit', 'form#loginForm', function(e){
             console.log(data.data)
             if(data.hasOwnProperty('status')){
                 if(data.hasOwnProperty('redirectTo')){
+                    // Reference to set deafult header for each request
+                    // -------------http://stackoverflow.com/questions/7686827/how-can-i-add-a-custom-http-header-to-ajax-request-with-js-or-jquery
+                    // $.ajaxSetup({
+                    //     headers: { 'Authorization': 'Bearer'  + data.data.api_token}
+                    // });
+
                     window.location.href = BASEURL + data.redirectTo
                 }
             }
