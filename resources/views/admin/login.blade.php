@@ -12,7 +12,8 @@
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form action="{{ url('/admin') }}" method="post">
+        <!-- <form action="{{ url('/admin') }}" method="post"> -->
+        <form id="loginForm">
             @include('message/response-message')
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group has-feedback">

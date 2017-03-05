@@ -1,15 +1,40 @@
-// var BASEURL = 'http://localhost/laraveladmin/public/';
-
-// $.ajaxPrefilter(function( options ) {
-//     // if ( !options.beforeSend) {
-//         options.beforeSend = function (xhr) { 
-//             // xhr.setRequestHeader('CUSTOM-HEADER-KEY', 'CUSTOM-HEADER-VALUE');
-//             xhr.setRequestHeader('Authorization','Bearer ' + response.data.api_token);
-//         }
-//     // }
-// });
-
 // console.log(response.data.api_token);
+$(document).on('submit', 'form#loginForm', function(e){
+    e.preventDefault();
+    // alert("hello")
+    // console.log($('#loginForm').serialize())
+    // console.log(BASEURL + "admin/loginApi")
+    // e.preventdefault()
+    $.ajax({
+        url : BASEURL + "admin/loginApi",
+        data: $(this).serializeArray(),
+        type : 'POST',
+        statusCode: {
+                404: function() {
+                    alert(['page not found']);
+                },
+                500: function(){
+                    alert('Internal server error');
+                }
+            },
+        beforeSend : function(){
+            alert("before send")
+            // return false
+        },
+        success : function(data){
+            console.log(data.data)
+            if(data.hasOwnProperty('status')){
+                if(data.hasOwnProperty('redirectTo')){
+                    window.location.href = BASEURL + data.redirectTo
+                }
+            }
+        },
+        error : function(){
+
+        }
+    })
+})
+
 $(document).ready(function () {
     if(window.location.href.indexOf("dashboard") > -1) {
        $('body').removeClass('login-page')

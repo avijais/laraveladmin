@@ -4,7 +4,7 @@ $.ajaxPrefilter(function( options ) {
     // if ( !options.beforeSend) {
         options.beforeSend = function (xhr) { 
             // xhr.setRequestHeader('CUSTOM-HEADER-KEY', 'CUSTOM-HEADER-VALUE');
-            xhr.setRequestHeader('Authorization','Bearer ' + response.data.api_token);
+            // xhr.setRequestHeader('Authorization','Bearer ' + response.data.api_token);
         }
     // }
 });

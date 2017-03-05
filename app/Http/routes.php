@@ -20,11 +20,11 @@ Route::get('register', function () {
 });
 
 Route::post('registerUser','Application\RegistrationController@registerUser');
-
+Route::get('admin', ['uses' => 'Admin\LoginController@adminLogin', 'as' => 'admin']);
+Route::post('admin/','Admin\LoginController@login');
+Route::post('admin/loginApi','Admin\LoginController@loginApi');
 
 Route::group(['prefix' => 'admin'], function(){
-	Route::get('/', ['uses' => 'Admin\LoginController@adminLogin', 'as' => 'admin']);
-	Route::post('/','Admin\LoginController@login');
 	Route::get('/dashboard', ['uses' => 'Admin\LoginController@dashboard', 'as' => 'admin/dashboard']);
 	Route::get('/logout', ['uses' => 'Admin\LoginController@logout', 'as' => 'admin/logout']);
 	Route::get('/usersList', 'Admin\UserController@usersList');
