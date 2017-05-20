@@ -11,8 +11,19 @@
 |
 */
 
+
+/*
+|--------------------------------------------------------------------------
+| Laravel Admin Auth app
+|--------------------------------------------------------------------------
+|
+| http://laravelcoding.com/blog/laravel-5-beauty-starting-the-admin-area#08-middleware
+|
+*/
+
+
 Route::get('/', function () {
- return view('test.welcome');
+    return 'LaravelAdmin APP public plain root';
 });
 
 Route::get('register', function () {
@@ -20,12 +31,20 @@ Route::get('register', function () {
 });
 
 Route::post('registerUser','Application\RegistrationController@registerUser');
-Route::get('admin', ['uses' => 'Admin\LoginController@adminLogin', 'as' => 'admin']);
-Route::post('admin/','Admin\LoginController@login');
-Route::post('admin/loginApi','Admin\LoginController@loginApi');
 
-Route::group(['prefix' => 'admin'], function(){
-	Route::get('/dashboard', ['uses' => 'Admin\LoginController@dashboard', 'as' => 'admin/dashboard']);
+Route::get('admin', ['uses' => 'Admin\LoginController@adminLogin', 'as' => 'admin']);
+Route::post('admin','Admin\LoginController@login');
+Route::get('admin/dashboard', ['uses' => 'Admin\LoginController@dashboard', 'as' => 'admin/dashboard']);
+
+/**
+ * use this if want to check user id in session created by Avinash
+ *
+ * Route::group(['prefix' => 'admin', 'middleware' => ['auth:api', 'chksession']], function(){
+ * 
+ */
+// Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:api']], function(){
+	
 	Route::get('/logout', ['uses' => 'Admin\LoginController@logout', 'as' => 'admin/logout']);
 	Route::get('/usersList', 'Admin\UserController@usersList');
 	Route::get('/fetchUsers', 'Admin\UserController@fetchUsers');
